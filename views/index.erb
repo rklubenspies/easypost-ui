@@ -4,12 +4,17 @@
 
 <form action='/shipment' method='post' class='form-horizontal' role="form">
     <div class="row">
-      <div class="column column-50">
+      <div class="column column-33">
         <div class="form-group" style="padding:20px">
-          <%= erb :_address, locals: {name: "To Address"}%>
+          <%= erb :_address, locals: {name: "From Address", type: "from"}%>
         </div>
       </div>
-      <div class="column column-50">
+      <div class="column column-33">
+        <div class="form-group" style="padding:20px">
+          <%= erb :_address, locals: {name: "To Address", type: "to"}%>
+        </div>
+      </div>
+      <div class="column column-33">
         <div class="form-group" style="padding:20px">
           <%= erb :_parcel_details %>
           <input type='submit' value='Get Rate'>
@@ -18,6 +23,3 @@
     </div>
   </div>
 </form>
-
-
-

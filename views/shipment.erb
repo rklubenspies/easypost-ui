@@ -1,28 +1,41 @@
-<h3>CONGRATS!</h3>
-<p><em>You have purchased a Shipment with EasyPost.</em></p>
+<h3>Shipment to <%= shipment.to_address.name %></h3>
+<p><em>Last updated <%= shipment.updated_at %>.</em><br></p>
 
-<label>From Address</label>
-<p>
-    <%=shipment.from_address.name%><br>
-    <%=shipment.from_address.street1%><br>
-    <% unless shipment.to_address.street2 == ""%>
-      <%=shipment.from_address.street2%><br>
-    <% end %>
-    <%=shipment.from_address.city%>, <%=shipment.from_address.state%><br>
-    <%=shipment.from_address.zip%> <%=shipment.from_address.country%>
-</p>
+<table>
+  <tr>
+    <th><label>From Address</label></th>
+    <th><label>To Address</label></th>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <%=shipment.from_address.company%><br>
+        <%=shipment.from_address.name%><br>
+        <%=shipment.from_address.street1%><br>
+        <% unless shipment.to_address.street2 == ""%>
+          <%=shipment.from_address.street2%><br>
+        <% end %>
+        <%=shipment.from_address.city%>, <%=shipment.from_address.state%> <%=shipment.from_address.zip%> <%=shipment.from_address.country%>
+      </p>
+    </td>
+    <td>
+      <p>
+        <%=shipment.to_address.company%><br>
+        <%=shipment.to_address.name%><br>
+        <%=shipment.to_address.street1%><br>
+        <% unless shipment.to_address.street2 == ""%>
+          <%=shipment.to_address.street2%><br>
+        <% end %>
+        <%=shipment.to_address.city%>, <%=shipment.to_address.state%> <%=shipment.to_address.zip%> <%=shipment.from_address.country%><br>
+      </p>
+    </td>
+  </tr>
+</table>
 
-<label>To Address</label>
-<p>
-    <%=shipment.to_address.name%><br>
-    <%=shipment.to_address.street1%><br>
-    <% binding.pry %>
-    <% unless shipment.to_address.street2 == ""%>
-      <%=shipment.to_address.street2%><br>
-    <% end %>
-    <%=shipment.to_address.city%>, <%=shipment.to_address.state%><br>
-    <%=shipment.to_address.zip%> <%=shipment.from_address.country%><br>
-</p>
+<h4>Sent <%= shipment.selected_rate.carrier %> <%= shipment.selected_rate.service %></h4>
+<p><a href="<%=shipment.postage_label.label_url %>">View Label as PNG</a></p>
 
-<p><a href="<%=shipment.postage_label.label_url %>">Label Link</a></p>
-<p>Tracking code: <%=shipment.tracking_code%></p>
+<h4>Tracking status: <%= shipment.status %></h4>
+<p><%= shipment.selected_rate.carrier %>: <a href="<%= shipment.tracker.public_url %>" target="blank"><%=shipment.tracking_code%></a></p>
+
+<%# binding.pry %>

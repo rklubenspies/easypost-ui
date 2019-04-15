@@ -12,10 +12,14 @@ class App < Sinatra::Base
 
   configure :development, :test do
     Dotenv.load
+    EasyPost.api_key = ENV['EASYPOST_API_KEY_TEST']
+  end
+
+  configure :production do
+    EasyPost.api_key = ENV['EASYPOST_API_KEY_PROD']
   end
 
   configure do
-    EasyPost.api_key = ENV['EASYPOST_API_KEY']
     set :addr_verification, {verify_strict: ['delivery','zip4']}
   end
 
@@ -29,12 +33,16 @@ class App < Sinatra::Base
 
   post '/shipment' do
     begin
-      from_address = EasyPost::Address.new(ENV['FROM_ADDRESS_ID'])
-      to_address = if params[:verify] == "true"
-                     EasyPost::Address.create(params[:address].merge(settings.addr_verification))
-                   else
-                     params[:address]
-                   end
+      from_address =  if params[:verify_from] == "true"
+                        EasyPost::Address.create(params[:from_address].merge(settings.addr_verification))
+                      else
+                        params[:from_address]
+                      end
+      to_address =    if params[:verify_to] == "true"
+                        EasyPost::Address.create(params[:to_address].merge(settings.addr_verification))
+                      else
+                        params[:to_address]
+                      end
       shipment = EasyPost::Shipment.create(
         from_address: from_address,
         to_address: to_address,
@@ -49,7 +57,8 @@ class App < Sinatra::Base
   end
 
   get '/shipment/:id/rates' do
-    erb :rate, locals: {shipment: retrieve_shipment}
+    shipment = retrieve_shipment
+    erb :rate, locals: {shipment: shipment}
   end
 
   post '/shipment/:id/buy' do
