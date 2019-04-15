@@ -10,3 +10,6 @@
 
 # pinning gems is overrated
 Gemfile.lock
+
+# Keep API keys secret
+.env

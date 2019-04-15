@@ -11,13 +11,19 @@
 <!-- JQuery -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script type="application/javascript" src="/thisjquery.js"></script>
-    <title>UI for Buying Shipments with EasyPost</title>
+    <title>EasyPost Interface</title>
   </head>
   <body>
     <div class="nav">
-      <a href="/"><h5 class="home">UI for Buying Shipments with EasyPost</h5></a>
+      <a href="/"><h5 class="home">EasyPost Interface</h5></a>
     </div>
     <div class="container">
+      <% if Sinatra::Base.development? %>
+        <p><em>You are using the TEST system. No postage will be purchased.</em></p>
+      <% end %>
+      <% if Sinatra::Base.production? %>
+        <h4 style="color:red;font-weight:bold;">You are using the PRODUCTION system. THIS WILL PURCHASE POSTAGE.</h4>
+      <% end %>
       <%= yield %>
     </div>
   </body>

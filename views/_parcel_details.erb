@@ -1,17 +1,15 @@
-<label class="control-label">USPS Options</label>
+<label class="control-label">USPS Options <a href="https://www.easypost.com/usps-package-restrictions">(Package Restrictions)</a></label>
 <select id="selector" name="parcel[predefined_package]">
-  <option value="Card">Flat Rate Card</option>
-  <option value="FlatRateEnvelope">Flat Rate Letter Envelope</option>
-  <option value="FlatRateGiftCardEnvelope">Flat Rate Gift Card Envelopes</option>
-  <option value="FlatRateWindowEnvelope">Flat Rate Window Envelopes</option>
-  <option value="SmallFlatRateEnvelope">Flat Rate Small Envelopes</option>
-  <option value="FlatRatePaddedEnvelope">Flat Rate Padded Envelopes</option>
-  <option value="FlatRateLegalEnvelope">Flat Rate Legal Envelopes</option>
+  <option value="Letter">Letter (Min: 3 1/2" x 5 1/2"; Max: 6 1/8" x 11 1/2"; 3.5 oz.)</option>
+  <option value="Flat">Flat (Min: 6 1/8" x 11 1/2"; Max: 12" x 15"; 13 oz.)</option>
+  <option value="Parcel" Selected>Parcel (Max: 108" combined length and girth; 15.99 oz. first class; 70 lbs. Priority/Media Mail)</option>
+  <option value="FlatRateEnvelope">Flat Rate Envelope (12 1/2" x 9 1/2")</option>
+  <option value="FlatRateLegalEnvelope">Flat Rate Legal Envelope (15" x 9 1/2")</option>
+  <option value="FlatRateWindowEnvelope">Flat Rate Window Envelope (10" x 5")</option>
+  <option value="FlatRatePaddedEnvelope">Flat Rate Padded Envelope (12 1/2" x 9 1/2")</option>
   <option value="SmallFlatRateBox">Flat Rate Small Box</option>
-  <option value="MediumFlatRateBox">Flat Rate Medium Boxes</option>
+  <option value="MediumFlatRateBox">Flat Rate Medium Box</option>
   <option value="LargeFlatRateBox">Flat Rate Large Box</option>
-  <option value="LargeFlatRateBoardGameBox">Flat Rate Large Board Game Box</option>
-  <option value="Parcel" Selected>Parcel</option>
 </select>
 <div id="hide-input">
   <label class="control-label">Custom Parcel Details</label>
