@@ -46,7 +46,10 @@ class App < Sinatra::Base
       shipment = EasyPost::Shipment.create(
         from_address: from_address,
         to_address: to_address,
-        parcel: params[:parcel]
+        parcel: params[:parcel],
+        options: {
+          delivery_confirmation: params[:delivery_confirmation],
+        },
       )
       redirect "shipment/#{shipment.id}/rates"
     rescue EasyPost::Error => e

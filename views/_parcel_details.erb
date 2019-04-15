@@ -19,3 +19,9 @@
 </div>
 <p>Note: If you have chosen predefined package option, dimensions are not required but for weight</p>
 <input type="number" step="any" name="parcel[weight]" placeholder="weight (oz)" required>
+<label class="control-label">Delivery Confirmation</label>
+<select id="selector" name="delivery_confirmation">
+  <option value="NO_SIGNATURE" selected>No Signature Required</option>
+  <option value="SIGNATURE">Signature Required</option>
+  <option value="ADULT_SIGNATURE">Adult Signature Required</option>
+</select>
