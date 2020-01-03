@@ -1,0 +1,8 @@
+version: "3.7"
+services: 
+    web:
+        env_file: 
+            - "./.env.dev"
+        environment: 
+            - RUBY_ENV=development
+        command: "bundle exec shotgun config.ru --host 0.0.0.0 -p 4567"
