@@ -1,25 +1,17 @@
 require 'sinatra/base'
 require 'easypost'
-require 'tilt/erb'
-require 'dotenv'
-require 'pry'
 require './lib/helpers'
 
 class App < Sinatra::Base
+  require 'tilt/erb' if development?
+  require 'pry' if development?
+
   set :show_exceptions, :after_handler
   enable :sessions
   helpers Helpers
 
-  configure :development, :test do
-    Dotenv.load
-    EasyPost.api_key = ENV['EASYPOST_API_KEY_TEST']
-  end
-
-  configure :production do
-    EasyPost.api_key = ENV['EASYPOST_API_KEY_PROD']
-  end
-
   configure do
+    EasyPost.api_key = ENV['EASYPOST_API_KEY']
     set :addr_verification, {verify_strict: ['delivery','zip4']}
   end
 

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Shortcut to start up container in production or development using docker-compose
+# Usage:
+#   Start as development:    ./run dev
+#   Start as production:     ./run prod
+#   Build or rebuild images: ./run build
+
+case "$1" in
+ d | dev | development)
+  docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+  ;;
+ p | prod | production)
+  docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+  ;;
+ b | build | rebuild)
+  docker-compose build
+  ;;
+ *)
+  echo " "
+  echo "Usage: $0 {dev|prod|build}"
+  echo " "
+  echo "Shortcut to start up container in production or development using docker-compose"
+  echo "Usage:"
+  echo "  Start as development:    ./run dev"
+  echo "  Start as production:     ./run prod"
+  echo "  Build or rebuild images: ./run build"
+  echo " "
+  exit 1
+esac
